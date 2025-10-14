@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import * as taskDao from "task.dao";
+import taskDao from "task.dao";
 
 
 /**
