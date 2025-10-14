@@ -7,10 +7,12 @@
  * - It's the one you actually run when you run npm run dev or docker-compose up.
  */
 
+// import { runAllSeeders } from "./seeders";
+
+
 import 'dotenv/config';
 import app from "./server";
 import { syncDB } from "./models";
-import { runAllSeeders } from "./seeders";
 import { envConfig, validateEnvConfig } from "./config/env";
 
 const PORT = envConfig.PORT;

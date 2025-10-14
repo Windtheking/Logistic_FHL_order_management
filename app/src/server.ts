@@ -5,15 +5,7 @@
 */
 
 import express from "express";
-import encryptionRoutes from "./routes/encryption.routes";
-import authRoutes from "./routes/auth.routes";
-import customerRoutes from "./routes/customer.routes"
-import categoryRoutes from "./routes/category.routes";
-import orderStatusRoutes from "./routes/order_status.routes";
-import paymentMethodRoutes from "./routes/payment_method.routes";
-import roleRoutes from "./routes/role.routes";
-import genderRoutes from "./routes/gender.routes";
-import addressRoutes from "./routes/address.routes";
+
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./docs/swagger";
 import { encryptRoutes, productRoutes } from "./routes";
@@ -24,13 +16,7 @@ app.use(express.json());
 
 // Router
 app.use("/api/auth", authRoutes);
-app.use("/api/customers", customerRoutes);
-app.use("/api/category", categoryRoutes);
-app.use("/api/order_status", orderStatusRoutes);
-app.use("/api/payments", paymentMethodRoutes);
-app.use("/api/role", roleRoutes);
-app.use("/api/gender", genderRoutes)
-app.use("/api/address", addressRoutes);
+
 
 
 // Encrypt and Decrypt
