@@ -4,9 +4,9 @@ import {
   getUsersHandler,
   getUserByIdHandler,
   updateUserHandler,
-} from "./user.controller";
+} from "./orderState.controller";
 import { validateDtoMiddleware } from "../../middleware/validate-dto.middleware";
-import { CreateUserDto, UpdateUserDto } from "./user.dto";
+import { CreateUserDto, UpdateUserDto } from "./orderState.dto";
 
 const router = Router();
 

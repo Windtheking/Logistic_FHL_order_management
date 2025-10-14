@@ -1,117 +1,125 @@
 /**
- * Access DTO
- * ------------
- * This file defines the Data Transfer Objects (DTO) related to the access entity (singular).
+ * Client DTO
+ * -----------
+ * This file defines the Data Transfer Objects (DTO) related to the client entity (singular).
  *
  * DTOs are used to:
- *  - Standardize the data received or sent through the API.
- *  - Validate and type the objects that go into the controllers.
- *  - Avoid directly exposing the database models.
+ *  - Standardize the data exchanged via the API.
+ *  - Validate and type data received by controllers.
+ *  - Abstract database models and avoid exposing them directly.
  */
 
-import { IsBoolean, IsDate, IsDateString, IsIn, IsInt, IsOptional, IsString } from "class-validator";
+import { IsBoolean, IsDateString, IsEmail, IsOptional, IsString } from "class-validator";
 
 /**
- * Data Transfer Object for creating an access record.
- * @property {number} role_id - id to identify the rol
- * @property {string} username - Username for login.
- * @property {string} password - Password (should be hashed before storing).
- * @property {boolean} [is_active] - Whether the access is active (optional, defaults to true).
+ * Data Transfer Object for creating a client record.
+ *
+ * @property {string} id_card - Client's identification card number.
+ * @property {string} client_name - Full name of the client.
+ * @property {string} client_email - Email address of the client.
+ * @property {string} passwordHash - Password hash.
+ * @property {boolean} role_admin - Whether the client has admin role.
  *
  * @example
- * const dto: CreateAccessDto = {
- *   username: "admin",
- *   password: "hashedPassword123",
- *   is_active: true
+ * const dto: CreateClientDto = {
+ *   id_card: "AB123456",
+ *   client_name: "John Doe",
+ *   client_email: "john.doe@example.com",
+ *   passwordHash: "hashedPassword",
+ *   role_admin: false
  * };
  */
-
-export class CreateAccessDto {
-  @IsInt()
-  role_id!: number;
+export class CreateClientDto {
+  @IsString()
+  id_card!: string;
 
   @IsString()
-  username!: string;
+  client_name!: string;
+
+  @IsEmail()
+  client_email!: string;
 
   @IsString()
-  password!: string;
+  passwordHash!: string;
 
   @IsBoolean()
-  @IsOptional()
-  is_active?: boolean;
+  role_admin!: boolean;
 }
 
-
 /**
- * Data Transfer Object for updating an access record.
+ * Data Transfer Object for updating a client record.
  *
- * @property {string} [username] - Updated username.
- * @property {string} [password] - Updated password (hashed).
- * @property {boolean} [is_active] - Whether the access is active.
+ * Properties are optional for partial updates.
+ *
+ * @property {string} [id_card] - Updated identification number.
+ * @property {string} [client_name] - Updated full name.
+ * @property {string} [client_email] - Updated email address.
+ * @property {string} [passwordHash] - Updated password hash.
+ * @property {boolean} [role_admin] - Updated admin role flag.
  *
  * @example
- * const dto: UpdateAccessDto = {
- *   password: "newHashedPassword",
- *   is_active: false
+ * const dto: UpdateClientDto = {
+ *   client_name: "Jane Doe",
+ *   role_admin: true
  * };
  */
+export class UpdateClientDto {
+  @IsString()
+  @IsOptional()
+  id_card?: string;
 
-export class UpdateAccessDto {
-  @IsInt()
-  @IsOptional()
-  role_id?: number;
-  
   @IsString()
   @IsOptional()
-  username?: string;
-  
+  client_name?: string;
+
+  @IsEmail()
+  @IsOptional()
+  client_email?: string;
+
   @IsString()
   @IsOptional()
-  password?: string;
-  
+  passwordHash?: string;
+
   @IsBoolean()
   @IsOptional()
-  is_active?: boolean;
-
-
+  role_admin?: boolean;
 }
 
-
 /**
- * Data Transfer Object that represents the response of an access record.
+ * Data Transfer Object that represents the response of a client record.
  *
- * @property {number} id_access - Unique identifier of the access record.
- * @property {string} username - Username for login.
- * @property {boolean} is_active - Whether the access is active.
- * @property {Date} createdAt - Timestamp when the record was created.
- * @property {Date} updatedAt - Timestamp when the record was last updated.
+ * @property {number} id_client - The unique client identifier.
+ * @property {string} id_card - Identification number.
+ * @property {string} client_name - Full name.
+ * @property {string} client_email - Email address.
+ * @property {string} passwordHash - Password hash.
+ * @property {boolean} role_admin - Admin role flag.
+ * @property {Date} created_at - Timestamp of creation.
  *
  * @example
- * const access: AccessResponseDto = {
- *   id_access: 1,
- *   username: "admin",
- *   is_active: true,
- *   createdAt: new Date(),
- *   updatedAt: new Date()
+ * const client: ClientResponseDto = {
+ *   id_client: 1,
+ *   id_card: "AB123456",
+ *   client_name: "John Doe",
+ *   client_email: "john.doe@example.com",
+ *   passwordHash: "hashedPassword",
+ *   role_admin: false,
+ *   created_at: new Date()
  * };
  */
+export class ClientResponseDto {
+  id_client!: number;
 
-export class AccessResponseDto {
-  @IsInt()
-  id_access!: number;
+  id_card!: string;
 
-  @IsInt()
-  role_id!: number;
+  client_name!: string;
 
-  @IsString()
-  username!: string;
+  client_email!: string;
 
-  @IsBoolean()
-  is_active!: boolean;
+  passwordHash!: string;
+
+  role_admin!: boolean;
 
   @IsDateString()
-  createdAt!: Date;
-  
-  @IsDateString()
-  updatedAt!: Date;
+  created_at!: Date;
 }
