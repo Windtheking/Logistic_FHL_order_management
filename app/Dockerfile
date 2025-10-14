@@ -1,12 +1,12 @@
 FROM node:20-alpine
 
-# Definir directorio de trabajo
+# Define working directory
 WORKDIR /usr/src/app
 
-# Copiar package.json y package-lock.json antes que el código
+# takes both package json and copies them in the docker image
 COPY package*.json ./
 
-# Instalar dependencias (solo en la imagen base)
+# install all dependencies on the base image
 RUN npm install
 
 # Exponer el puerto
