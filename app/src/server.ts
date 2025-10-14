@@ -8,25 +8,24 @@ import express from "express";
 
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./docs/swagger";
-import { encryptRoutes, productRoutes } from "./routes";
+import { encryptRoutes } from "./routes";
 
 const app = express();
 
 app.use(express.json());
 
 // Router
-app.use("/api/auth", authRoutes);
+//app.use("/api/auth", authRoutes);
 
 
 
 // Encrypt and Decrypt
 app.use("/api", encryptRoutes);
 
-// Products Route
-app.use("/api/products", productRoutes);
+
 
 // Encrypt and Decrypt
-app.use("/api", encryptionRoutes);
+app.use("/api", encryptRoutes);
 
 // Swagger
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));

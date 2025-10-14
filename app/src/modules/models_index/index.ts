@@ -13,12 +13,17 @@
  * - Export Sequelize instance and all models.
  */
 
-import sequelize from "../config/database";
+import sequelize from "../../config/database";
 
 // Import models
-import Seller from "./seller.model";
+import orderHistory from "../orderHistory/orderHistory.models";
+import Client from "../clients/clients.models";
+import Order from "../Order/order.models";
+import OrderState from "../orderState/orderState.models";
+import OrderAddress from "../orderAdress/orderAdress.models";
+import Warehouse from "../wareHouses/wareHouses.models";
 
-import {applyAssociations} from "./associations";
+import {applyAssociations} from "../models_index/associations";
 /**
  * Apply associations between models.
  * -----------------
@@ -38,7 +43,7 @@ applyAssociations()
  *   depending on migration strategy.
  */
 
-const syncDB = async () => {
+export const syncDB = async () => {
   try {
     await sequelize.authenticate();
     console.log(" Connection established with the database.");
@@ -60,18 +65,10 @@ const syncDB = async () => {
  */
 export {
   sequelize,
-  Seller,
-  Role,
-  PaymentMethod,
-  Category,
-  Customer,
-  Gender,
+  orderHistory,
+  Client,
   Order,
-  OrderItem,
-  OrderPayment,
-  OrderStatus,
-  Product,
-  syncDB,
-  Access,
-  Address,
+  OrderState,
+  OrderAddress,
+  Warehouse,
 };

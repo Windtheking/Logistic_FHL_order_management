@@ -12,7 +12,7 @@
 
 import 'dotenv/config';
 import app from "./server";
-import { syncDB } from "./models";
+import { syncDB } from "././modules/models_index/index";
 import { envConfig, validateEnvConfig } from "./config/env";
 
 const PORT = envConfig.PORT;
