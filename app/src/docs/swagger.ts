@@ -13,7 +13,7 @@
  *  - Available at `/api/docs` (see `server.ts`).
  */
 
-import swaggerJSDoc from "swagger-jsdoc";
+import swaggerJSDoc from "swagger-jjsdoc";
 import { swaggerConfig } from "../config/env";
 
 /**
