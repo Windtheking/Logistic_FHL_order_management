@@ -54,7 +54,11 @@ export const envConfig = {
 export const validateEnvConfig = () => {
   const requiredVars = [
     'JWT_SECRET',
+<<<<<<< HEAD
     'DB_PASSWORD'
+=======
+    'POSTGRES_PASSWORD'
+>>>>>>> refactor/project_state_1.1.0
   ];
   
   const missingVars = requiredVars.filter(varName => {
@@ -81,6 +85,10 @@ export const swaggerConfig = {
     description: envConfig.API_DESCRIPTION,
   },
   servers: [
+<<<<<<< HEAD
+=======
+    
+>>>>>>> refactor/project_state_1.1.0
     {
       url: `http://localhost:${envConfig.PORT}/api`,
       description: "Development server"
