@@ -1,0 +1,1 @@
+export { default as encryptRoutes } from './encrypt.routes';
